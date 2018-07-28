@@ -1,20 +1,33 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div id ="header">
+  <span class="header-title" >{{title}}</span>
+  <div class="add-button" (click)="addTrip()">Add trip</div>
+  <div class="add-button" (click)="doDeleteTrip()">Delete trip</div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div id="content">
+  <div *ngIf="!adding_trip">
+   <div class= "trip" *ngFor="let trip of mytitles">
+     {{trip.title}}
+   </div>
+  </div>
+  <!--New div dialog-->
+
+  <div id="add_trip_dialog" *ngIf="adding_trip">
+    <div class="add_trip_field">
+    <p>Trip title: </p>
+    <input id="input_type" [(ngModel)]="newTrip.title" type="text"/>
+    </div>
+    <div>
+    Add new trip here.....
+    <div class="action_button" (click)="doAddTrip()">OK</div>
+    <div class="action_button" (click)="cancelAddTrip()">Cancel</div>
+  </div>
+  </div>
+  <div *ngIf="delete_trip">
+    <p>Delete the trip: </p>
+    <input id="delete_input"type="text" [(ngModel)]="delTrip.title"/>
+    <div class="del-button" (click)="deleteTrip()">OK</div>
+  </div>
+</div>
+<div id="footer">This is my footer</div>
+
 
